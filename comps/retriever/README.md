@@ -2,19 +2,19 @@
  
 Enter into the working directory
 ```bash
-cd ai-agents
+cd research-assistant
 ``` 
 ## Retriever server
  
 ### Build Retriever image
 ```bash
-docker buildx build --build-arg https_proxy=$https_proxy --build-arg http_proxy=$http_proxy -t ai-agents/retriever:latest -f comps/retriever/Dockerfile . 
+docker buildx build --build-arg https_proxy=$https_proxy --build-arg http_proxy=$http_proxy -t research-assistant/retriever:latest -f comps/retriever/Dockerfile . 
 ``` 
 
 ## To test and run the service individually
 ### Run Retriever container
 ```bash
-docker run -p 5007:7000 -e http_proxy=$http_proxy -e https_proxy=$https_proxy -e HUGGINGFACEHUB_API_TOKEN=<token> -e REDIS_URL=redis://<redis-host-name>:6379 -v /root/.cache/huggingface/hub:/.cache/huggingface/hub ai-agents/retriever:latest
+docker run -p 5007:7000 -e http_proxy=$http_proxy -e https_proxy=$https_proxy -e HUGGINGFACEHUB_API_TOKEN=<token> -e REDIS_URL=redis://<redis-host-name>:6379 -v /root/.cache/huggingface/hub:/.cache/huggingface/hub research-assistant/retriever:latest
 ``` 
  
 ### Run the Redis vector DB

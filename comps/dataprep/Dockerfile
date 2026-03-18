@@ -24,6 +24,8 @@ USER user
 
 COPY comps /home/user/comps
 
+RUN pip install torch==2.9.0 torchvision==0.24.0 --index-url https://download.pytorch.org/whl/cpu
+
 RUN pip install --no-cache-dir --upgrade pip setuptools && \
     if [ ${ARCH} = "cpu" ]; then pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cpu; fi && \
     pip install --no-cache-dir -r /home/user/comps/dataprep/requirements.txt

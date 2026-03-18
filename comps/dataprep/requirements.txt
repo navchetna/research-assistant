@@ -214,8 +214,6 @@ tifffile==2025.5.10
 timm==1.0.20
 tinycss2==1.4.0
 tokenizers==0.22.1
-torch==2.9.0+cpu
-torchvision==0.24.0+cpu
 tqdm==4.67.1
 transformers==4.57.1
 trimesh==4.9.0
