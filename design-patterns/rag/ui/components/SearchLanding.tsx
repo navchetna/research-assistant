@@ -100,12 +100,13 @@ export default function SearchLanding({ onSearch }: SearchLandingProps) {
   return (
     <Box
       sx={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        background: "linear-gradient(103deg, #2155BF 0%, #29D9FF 100.37%)",
-        pt: { xs: 4, md: 8 },
-        pb: { xs: 20, md: 24 },
+        minHeight: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        background: 'linear-gradient(103deg, #2155BF 0%, #29D9FF 100.37%)',
+        pt: { xs: 10, md: 16 },
+        pb: { xs: 4, md: 8 },
         px: 2,
       }}
     >

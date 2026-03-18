@@ -303,13 +303,22 @@ export default function SearchResults({ results, api, query, onSearch }: SearchR
                     >
                       Read Paper
                     </Button>
-                    {api === "semantic_scholar" && <Button
-                      startIcon={<Download />}
-                      onClick={() => paperId && handleDownloadReferences(paperId)}
-                      sx={{ fontWeight: 500, color: "#006621" }}
-                    >
-                      Download References
-                    </Button>}
+                    <Box display="flex" gap={1} alignItems="center">
+                      {api === "semantic_scholar" && <Button
+                        startIcon={<Download />}
+                        onClick={() => paperId && handleDownloadReferences(paperId)}
+                        sx={{ fontWeight: 500, color: "#006621" }}
+                      >
+                        Download References
+                      </Button>}
+                      <Button
+                        startIcon={<Download size={16} />}
+                        onClick={() => {}}
+                        sx={{ fontWeight: 500, color: "#006621", fontSize: '0.8rem' }}
+                      >
+                        Download Paper
+                      </Button>
+                    </Box>
                   </Box>
                 </Box>
               );

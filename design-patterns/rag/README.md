@@ -5,11 +5,11 @@
 
 1. Clone repo
 ```bash
-https://github.com/navchetna/ai-agents
+https://github.com/navchetna/research-assistant
 ```
 2. Move to project repo
 ```bash
-cd ai-agents/design-patterns/rag;
+cd research-assistant/design-patterns/rag;
 ```
 
 ### Docker setup
@@ -18,7 +18,7 @@ cd ai-agents/design-patterns/rag;
 
 ```bash
 export SERVER_HOST_URL=<host>:<port> # localhost:5008
-docker buildx build --build-arg https_proxy=$https_proxy --build-arg http_proxy=$http_proxy --build-arg SERVER_URL=${SERVER_HOST_URL} -t ai-agents/rag/ui:latest -f install/docker/Dockerfile .;
+docker buildx build --build-arg https_proxy=$https_proxy --build-arg http_proxy=$http_proxy --build-arg SERVER_URL=${SERVER_HOST_URL} -t research-assistant/rag/ui:latest -f install/docker/Dockerfile .;
 ```
 
 > Note: host would be localhost for local dev or server hostname for remote server
@@ -26,7 +26,7 @@ docker buildx build --build-arg https_proxy=$https_proxy --build-arg http_proxy=
 #### Run container
 
 ```
-docker run -p 5009:3000 -e http_proxy=$http_proxy -e https_proxy=$https_proxy ai-agents/rag/ui:latest
+docker run -p 5009:3000 -e http_proxy=$http_proxy -e https_proxy=$https_proxy research-assistant/rag/ui:latest
 ```
 
 ### Local Setup

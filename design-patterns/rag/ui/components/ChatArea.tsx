@@ -657,8 +657,7 @@ export default function ChatArea({
                           position: 'relative',
                         }}
                       >
-                        <Typography
-                          variant="body1"
+                        <Box
                           sx={{
                             color: '#333',
                             lineHeight: 1.5,
@@ -668,8 +667,7 @@ export default function ChatArea({
                           }}
                         >
                           {message.isThinking ? (
-                            <Typography
-                              variant="body1"
+                            <Box
                               sx={{
                                 color: '#333',
                                 lineHeight: 1.5,
@@ -714,10 +712,9 @@ export default function ChatArea({
                                   ))}
                                 </Box>
                               </Box>
-                            </Typography>
+                            </Box>
                           ) : (
-                            <Typography
-                              variant="body1"
+                            <Box
                               sx={{
                                 color: '#333',
                                 lineHeight: 1.5,
@@ -741,9 +738,9 @@ export default function ChatArea({
                                   ))}
                                 </>
                               )}
-                            </Typography>
+                            </Box>
                           )}
-                        </Typography>
+                        </Box>
 
                         <Box sx={{
                           display: 'flex',
