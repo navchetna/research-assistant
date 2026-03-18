@@ -534,7 +534,11 @@ export default function ChatArea({
         height: '100%',
         width: '100%',
         position: 'relative',
-        backgroundColor: '#f5f5f5',
+        background: `
+          radial-gradient(ellipse at 20% 0%, rgba(0, 113, 197, 0.06) 0%, transparent 50%),
+          radial-gradient(ellipse at 80% 100%, rgba(41, 217, 255, 0.05) 0%, transparent 50%),
+          linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%)
+        `,
       }}
     >
       <Box
@@ -575,31 +579,45 @@ export default function ChatArea({
                 }}
               >
                 {message.role === 'user' ? (
-                  <AccountCircleIcon
-                    sx={{
-                      fontSize: 32,
-                      color: '#0071C5',
-                      alignSelf: 'flex-start',
-                      mt: 1
-                    }}
-                  />
-                ) : (
                   <Box
                     sx={{
-                      width: 32,
-                      height: 32,
+                      width: 34,
+                      height: 34,
                       borderRadius: '50%',
-                      backgroundColor: 'rgb(245,245,245)',
+                      background: 'linear-gradient(135deg, #0071C5 0%, #29D9FF 100%)',
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
                       alignSelf: 'flex-start',
-                      mt: 1
+                      mt: 1,
+                      flexShrink: 0,
+                    }}
+                  >
+                    <AccountCircleIcon
+                      sx={{
+                        fontSize: 22,
+                        color: '#fff',
+                      }}
+                    />
+                  </Box>
+                ) : (
+                  <Box
+                    sx={{
+                      width: 34,
+                      height: 34,
+                      borderRadius: '50%',
+                      background: 'linear-gradient(135deg, #e8f0fe 0%, #d4e4fc 100%)',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      alignSelf: 'flex-start',
+                      mt: 1,
+                      flexShrink: 0,
                     }}
                   >
                     <AutoAwesomeIcon
                       sx={{
-                        fontSize: 24,
+                        fontSize: 20,
                         color: '#0071C5',
                       }}
                     />
@@ -617,12 +635,13 @@ export default function ChatArea({
                 >
                   {message.role === 'user' ? (
                     <Paper
-                      elevation={3}
+                      elevation={0}
                       sx={{
                         p: 2,
                         maxWidth: '100%',
-                        borderRadius: 4,
-                        backgroundColor: '#e3f2fd',
+                        borderRadius: '16px 16px 16px 4px',
+                        background: 'linear-gradient(135deg, #e3f2fd 0%, #dceefb 100%)',
+                        border: '1px solid rgba(0, 113, 197, 0.12)',
                         position: 'relative',
                       }}
                     >
@@ -647,13 +666,15 @@ export default function ChatArea({
                       }}
                     >
                       <Paper
-                        elevation={3}
+                        elevation={0}
                         sx={{
-                          p: 2,
+                          p: 2.5,
                           maxWidth: '100%',
                           width: '100%',
-                          borderRadius: 4,
-                          backgroundColor: '#fff',
+                          borderRadius: '16px 16px 16px 4px',
+                          backgroundColor: '#ffffff',
+                          border: '1px solid rgba(0, 0, 0, 0.06)',
+                          boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
                           position: 'relative',
                         }}
                       >
@@ -1046,29 +1067,47 @@ export default function ChatArea({
           component="form"
           onSubmit={handleSubmit}
           sx={{
-            p: 3,
-            backgroundColor: '#fff',
-            borderTop: '1px solid rgba(0, 0, 0, 0.1)',
+            px: 3,
+            py: 2,
+            pb: 4,
             display: 'flex',
-            gap: 2,
+            gap: 1.5,
             alignItems: 'center',
+            backgroundColor: 'transparent',
           }}
         >
+          <Box
+            sx={{
+              flex: 1,
+              display: 'flex',
+              alignItems: 'center',
+              backgroundColor: '#ffffff',
+              borderRadius: '24px',
+              boxShadow: '0 2px 12px rgba(0,0,0,0.08)',
+              border: '1px solid rgba(0,0,0,0.06)',
+              px: 1,
+              transition: 'box-shadow 0.2s ease',
+              '&:focus-within': {
+                boxShadow: '0 4px 20px rgba(0,113,197,0.15)',
+                borderColor: 'rgba(0,113,197,0.3)',
+              },
+            }}
+          >
           <TextField
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder={isLoading ? "Please wait..." : "Type your message..."}
-            variant="outlined"
+            variant="standard"
             fullWidth
             disabled={isLoading}
+            InputProps={{
+              disableUnderline: true,
+            }}
             sx={{
-              '& .MuiOutlinedInput-root': {
-                borderRadius: 3,
-                '&.Mui-focused': {
-                  '& fieldset': {
-                    borderColor: '#1976d2',
-                  },
-                },
+              px: 1.5,
+              py: 1,
+              '& .MuiInputBase-input': {
+                fontSize: '0.95rem',
               },
             }}
           />
@@ -1081,19 +1120,22 @@ export default function ChatArea({
               type="submit"
               disabled={isLoading || !input.trim()}
               sx={{
-                backgroundColor: '#1976d2',
+                background: 'linear-gradient(135deg, #0071C5 0%, #1976d2 100%)',
                 color: 'white',
+                mr: 0.5,
                 '&:hover': {
-                  backgroundColor: '#1565c0',
+                  background: 'linear-gradient(135deg, #005fa3 0%, #1565c0 100%)',
                 },
                 '&.Mui-disabled': {
-                  backgroundColor: 'rgba(0, 0, 0, 0.12)',
+                  background: 'rgba(0, 0, 0, 0.08)',
+                  color: 'rgba(0, 0, 0, 0.26)',
                 },
               }}
             >
-              <SendIcon />
+              <SendIcon fontSize="small" />
             </IconButton>
           </Tooltip>
+          </Box>
         </Box>
       </Box>
     </Box>
