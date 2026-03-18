@@ -1,6 +1,6 @@
 # RAG Chatbot for Researchers
 
-This repository `https://github.com/navchetna/ai-agents` provides a comprehensive framework for building a Retrieval-Augmented Generation (RAG) chatbot specifically designed for researchers. This framework combines various components to create a powerful system that can retrieve relevant information from documents and generate accurate, contextually appropriate responses.
+This repository `https://github.com/navchetna/research-assistant` provides a comprehensive framework for building a Retrieval-Augmented Generation (RAG) chatbot specifically designed for researchers. This framework combines various components to create a powerful system that can retrieve relevant information from documents and generate accurate, contextually appropriate responses.
 
 |   |   |
 | ----------------------------------- | ----------------------------------- |
@@ -140,11 +140,11 @@ Before running the application, you need to configure your API keys and cache di
 
 1. Copy the example environment script:
    ```bash
-   cd ai-agents/
+   cd research-assistant/
    cp env-example.sh .env.sh
    ```
 
-2. Edit `ai-agents/.env.sh` and add your API keys and configure cache directories:
+2. Edit `research-assistant/.env.sh` and add your API keys and configure cache directories:
    - Add your `GROQ_API_KEY` or `HUGGINGFACEHUB_API_TOKEN`
    - Set appropriate cache directories for models and data
    - Configure any other required environment variables
@@ -169,25 +169,25 @@ Once you have built all the required images and configured your environment vari
 
 **Run in foreground:**
 ```bash
-cd ai-agents/ # make sure you're in the right directory
+cd research-assistant/ # make sure you're in the right directory
 docker compose -f install/docker/research-assistant/docker-compose-groq.yaml up
 ```
 
 **Run in background (detached mode):**
 ```bash
-cd ai-agents/
+cd research-assistant/
 docker compose -f install/docker/research-assistant/docker-compose-groq.yaml up -d
 ```
 
 To view logs when running in background:
 ```bash
-cd ai-agents/
+cd research-assistant/
 docker compose -f install/docker/research-assistant/docker-compose-groq.yaml logs -f
 ```
 
 To stop the application running in background:
 ```bash
-docker compose -f ai-agents/install/docker/research-assistant/docker-compose-groq.yaml down
+docker compose -f research-assistant/install/docker/research-assistant/docker-compose-groq.yaml down
 ```
 
 ### Accessing the Application
