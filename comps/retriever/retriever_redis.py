@@ -4,10 +4,11 @@
 import os
 import time
 import redis
+import requests
 from typing import Union
+from langchain_core.embeddings import Embeddings
 from langchain_community.embeddings import HuggingFaceBgeEmbeddings
 from langchain_community.vectorstores import Redis
-from langchain_huggingface import HuggingFaceEndpointEmbeddings
 from redis_config import EMBED_MODEL, INDEX_NAME, INDEX_SCHEMA, REDIS_URL
 
 from comps import (
@@ -52,6 +53,25 @@ logflag = os.getenv("LOGFLAG", False)
 
 tei_embedding_endpoint = os.getenv("TEI_EMBEDDING_ENDPOINT")
 bridge_tower_embedding = os.getenv("BRIDGE_TOWER_EMBEDDING")
+
+
+class TEIEndpointEmbeddings(Embeddings):
+    def __init__(self, endpoint: str):
+        self.endpoint = endpoint.rstrip("/")
+
+    def _embed(self, texts: list[str]) -> list[list[float]]:
+        response = requests.post(f"{self.endpoint}/embed", json={"inputs": texts}, timeout=60)
+        response.raise_for_status()
+        embeddings = response.json()
+        if embeddings and isinstance(embeddings[0], (int, float)):
+            return [embeddings]
+        return embeddings
+
+    def embed_documents(self, texts: list[str]) -> list[list[float]]:
+        return self._embed(texts)
+
+    def embed_query(self, text: str) -> list[float]:
+        return self._embed([text])[0]
 
 
 @register_microservice(
@@ -139,7 +159,7 @@ if __name__ == "__main__":
     # Create vectorstore
     if tei_embedding_endpoint:
         # create embeddings using TEI endpoint service
-        embeddings = HuggingFaceEndpointEmbeddings(model=tei_embedding_endpoint)
+        embeddings = TEIEndpointEmbeddings(tei_embedding_endpoint)
         vector_db = Redis(embedding=embeddings, index_name=INDEX_NAME, redis_url=REDIS_URL)
     # TODO: Add more support
     # elif bridge_tower_embedding:

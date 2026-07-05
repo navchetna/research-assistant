@@ -7,7 +7,7 @@
 ### Build image
 ```bash
 cd research-assistant;
-docker buildx build --build-arg https_proxy=$https_proxy --build-arg http_proxy=$http_proxy -t ai-agents/rag/backend:latest -f comps/Dockerfile .; 
+docker buildx build --build-arg https_proxy=$https_proxy --build-arg http_proxy=$http_proxy -t research-assistant/rag/backend:latest -f comps/Dockerfile .; 
 ```
 
 ### Run container
